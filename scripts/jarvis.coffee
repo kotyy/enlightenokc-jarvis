@@ -38,7 +38,7 @@ module.exports = (robot) ->
       'No trouble!',
       'Anytime.',
   ]
-  robot.hear /(?:thanks|thank you) jarvis/i, (msg) ->
+  robot.hear /(?:thanks|thank you|thanx|thnx|thx|ty) jarvis/i, (msg) ->
     msg.reply msg.random welcomeResponses
         
   # robot.hear /badger/i, (msg) ->
