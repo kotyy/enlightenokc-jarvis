@@ -29,21 +29,33 @@ module.exports = (robot) ->
           msg.send body
           
   welcomeResponses = [
-      'No problem!', 
-      'I\'m glad to help!', 
-      'Happy to be of assistance.', 
-      'Don\'t tell anyone, but you\'re my favorite frog.', 
-      'You\'re Welcome.',
-      'My pleasure.',
-      'No trouble!',
-      'Anytime.',
+      "No problem!", 
+      "I'm glad to help!", 
+      "Happy to be of assistance.", 
+      "Don't tell anyone, but you're my favorite frog.", 
+      "You're Welcome.",
+      "My pleasure.",
+      "No trouble!",
+      "Anytime.",
   ]
   robot.hear /(?:thanks|thank you|thanx|thnx|thx|ty) jarvis/i, (msg) ->
     msg.reply msg.random welcomeResponses
+    
+
+          
+    salutations = [
+        "Nice to meet you.",
+        "Hi to you, too!",
+        "Oh, hello!",
+        "Happy to make your acquaintance.",
+        "We've got such a smurf problem around these parts... OH! Didn't see you. Hi!",
+    ]
+    robot.hear /(?:hi|hello|good morning|good afternoon|good evening) jarvis/i, (msg) ->
+      msg.reply msg.random salutations
         
-  # robot.hear /badger/i, (msg) ->
-  #   msg.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
-  #
+  robot.hear /smurf/i, (msg) ->
+    msg.send "Smurfs? SMURFS? WE DON'T NEED NO STINKIN SMURFS."
+
   # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
   #   if doorType is "pod bay"
