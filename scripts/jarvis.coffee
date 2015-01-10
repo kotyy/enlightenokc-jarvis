@@ -43,15 +43,15 @@ module.exports = (robot) ->
     
 
           
-    salutations = [
-        "Nice to meet you.",
-        "Hi to you, too!",
-        "Oh, hello!",
-        "Happy to make your acquaintance.",
-        "We've got such a smurf problem around these parts... OH! Didn't see you. Hi!",
-    ]
-    robot.hear /(?:hi|hello|good morning|good afternoon|good evening) jarvis/i, (msg) ->
-      msg.reply msg.random salutations
+  salutations = [
+    "Nice to meet you.",
+    "Hi to you, too!",
+    "Oh, hello!",
+    "Happy to make your acquaintance.",
+    "We've got such a smurf problem around these parts... OH! Didn't see you. Hi!",
+  ]
+  robot.hear /(?:hi|hello|good morning|good afternoon|good evening) jarvis/i, (msg) ->
+    msg.reply msg.random salutations
         
   robot.hear /smurf/i, (msg) ->
     msg.send "Smurfs? SMURFS? WE DON'T NEED NO STINKIN SMURFS."
