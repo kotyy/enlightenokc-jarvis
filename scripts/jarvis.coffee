@@ -10,6 +10,37 @@
 
 module.exports = (robot) ->
 
+    # Description:
+    #   Submit time query to www.timeapi.org
+    # https://gist.github.com/robcowie/4519412
+    # Commands:
+    #   hubot time - Current time in local timezone
+    #   hubot time <timezone> - Current time in timezone
+    #   hubot time <timezone> <query> - Time in timezone based on query 
+  robot.respond /time (\D{3})([\d\D ]*)/i, (msg) ->
+    tz = msg.match[1] || "utc"
+    q = msg.match[2].trim() || "now"
+    url = "http://www.timeapi.org/" + tz + "/" + q
+    msg.http(url)
+      .get() (err, res, body) ->
+        if res.statusCode == 500
+          msg.send "Sorry, I don't understand that time query. See http://chronic.rubyforge.org"
+        else
+          msg.send body
+          
+  welcomeResponses = [
+      'No problem!', 
+      'I\'m glad to help!', 
+      'Happy to be of assistance.', 
+      'Don\'t tell anyone, but you\'re my favorite frog.', 
+      'You\'re Welcome.',
+      'My pleasure.',
+      'No trouble!',
+      'Anytime.',
+  ]
+  robot.hear /(?:thanks|thank you) jarvis/i, (msg) ->
+    msg.reply msg.random welcomeResponses
+        
   # robot.hear /badger/i, (msg) ->
   #   msg.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
   #
