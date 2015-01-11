@@ -11,7 +11,7 @@
     "hubot-google-translate": "^0.1.0",
     "hubot-help": "^0.1.1",
     "hubot-heroku-keepalive": "0.0.4",
-    "hubot-ingress": "^0.5.1",
+    "hubot-ingress": "^0.5.2",
     "hubot-maps": "0.0.1",
     "hubot-pugme": "^0.1.0",
     "hubot-redis-brain": "0.0.2",
