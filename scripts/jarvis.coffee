@@ -40,9 +40,7 @@ module.exports = (robot) ->
   ]
   robot.hear /(?:thanks|thank you|thanx|thnx|thx|ty) jarvis/i, (msg) ->
     msg.reply msg.random welcomeResponses
-    
 
-          
   salutations = [
     "Nice to meet you.",
     "Hi to you, too!",
@@ -57,8 +55,8 @@ module.exports = (robot) ->
     msg.send "Smurfs? SMURFS? WE DON'T NEED NO STINKIN SMURFS."
     
   # https://www.ingress.com/intel?ll=-77.846809,166.665052&z=17
-  robot.hear /https:\/\/www.ingress.com\/intel\?ll=(\-?\d+(\.\d+)?),(\-?\d+(\.\d+)?)&z=(\d+)/i, (msg) ->
-    msg.send 'https://www.google.com/maps/dir//' + msg.match[1] + ',' + msg.match[3] + '/@' + msg.match[1] + ',' + msg.match[3] + ',' + msg.match[5] + 'z'
+  robot.hear /https:\/\/www.ingress.com\/intel\?ll=([0-9\-\.]+),([0-9\-\.]+)\&z=(\d+)/i, (msg) ->
+    msg.send 'https://www.google.com/maps/dir//' + msg.match[1] + ',' + msg.match[2] + '/@' + msg.match[1] + ',' + msg.match[2] + ',' + msg.match[3] + 'z'
 
   # robot.respond /open the (.*) doors/i, (msg) ->
   #   doorType = msg.match[1]
