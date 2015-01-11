@@ -56,15 +56,18 @@ module.exports = (robot) ->
     
   # https://www.ingress.com/intel?ll=-77.846809,166.665052&z=17
   robot.hear /https:\/\/www.ingress.com\/intel\?ll=([0-9\-\.]+),([0-9\-\.]+)\&z=(\d+)/i, (msg) ->
-    msg.send 'https://www.google.com/maps/dir//' + msg.match[1] + ',' + msg.match[2] + '/@' + msg.match[1] + ',' + msg.match[2] + ',' + msg.match[3] + 'z'
+    lat = msg.match[1]
+    lon = msg.match[2]
+    zoom = msg.match[3]
+    msg.send "https://www.google.com/maps/dir//#{lat},#{lon}/@#{lat},#{lon},#{zoom}z"
 
-  # robot.respond /open the (.*) doors/i, (msg) ->
-  #   doorType = msg.match[1]
-  #   if doorType is "pod bay"
-  #     msg.reply "I'm afraid I can't let you do that."
-  #   else
-  #     msg.reply "Opening #{doorType} doors"
-  #
+  robot.respond /open the (.*) doors/i, (msg) ->
+    doorType = msg.match[1]
+    if doorType is "pod bay"
+      msg.reply "I'm afraid I can't let you do that."
+    else
+      msg.reply "Opening #{doorType} doors"
+
   # robot.hear /I like pie/i, (msg) ->
   #   msg.emote "makes a freshly baked pie"
   #
