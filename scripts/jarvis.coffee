@@ -53,6 +53,10 @@ module.exports = (robot) ->
         
   robot.hear /smurf/i, (msg) ->
     msg.send "Smurfs? SMURFS? WE DON'T NEED NO STINKIN SMURFS."
+  
+  
+  robot.hear /^(http.*)$/i, (msg) ->
+    msg.send(msg.match[1])
     
   # https://www.ingress.com/intel?ll=-77.846809,166.665052&z=17
   robot.hear /https:\/\/www.ingress.com\/intel\?ll=([0-9\-\.]+),([0-9\-\.]+)\&z=(\d+)/i, (msg) ->
