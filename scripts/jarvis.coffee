@@ -55,7 +55,7 @@ module.exports = (robot) ->
     msg.send "Smurfs? SMURFS? WE DON'T NEED NO STINKIN SMURFS."
   
   # https://www.ingress.com/intel?ll=-77.846809,166.665052&z=17
-  robot.hear /https:\/\/www.ingress.com\/intel\?ll=([0-9\-\.]+),([0-9\-\.]+)\&z=(\d+)/i, (msg) ->
+  robot.hear /https:\/\/www.ingress.com\/intel\?ll=([0-9\-\.]+),([0-9\-\.]+)&z=(\d+)/i, (msg) ->
     lat = msg.match[1]
     lon = msg.match[2]
     zoom = msg.match[3]
@@ -67,7 +67,38 @@ module.exports = (robot) ->
       msg.reply "I'm afraid I can't let you do that."
     else
       msg.reply "Opening #{doorType} doors"
+  
+  
+  robot.googleGeocodeKey = process.env.HUBOT_GOOGLE_GEOCODE_KEY
+  googleGeocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json'
 
+  lookupLatLong = (msg, location, cb) ->
+    params =
+      address: location
+    params.key = robot.googleGeocodeKey if robot.googleGeocodeKey?
+
+    msg.http(googleGeocodeUrl).query(params)
+      .get() (err, res, body) ->
+        try
+          body = JSON.parse body
+          coords = body.results[0].geometry.location
+        catch err
+          err = "Could not find #{location}"
+          return cb(err, msg, null)
+        cb(err, msg, coords)
+
+  missionMapUrl = (coords) ->
+    return "https://www.google.com/fusiontables/embedviz?q=select+col8+from+1fcYuKkOVrEW-1BbndpfbkFBShjEQHL7e1cT6A1cm&viz=MAP&h=false&lat=" + encodeURIComponent(coords.lat) + "&lng=" + encodeURIComponent(coords.lng) + "&t=1&z=13&l=col8&y=2&tmplt=2&hml=TWO_COL_LAT_LNG"
+
+  sendIntelLink = (err, msg, coords) ->
+    return msg.send err if err
+    url = missionMapUrl coords
+    msg.reply "Here you go! " + url
+
+  robot.respond /(mission)(?: for)?\s(.*)/i, (msg) ->
+    location = msg.match[2]
+    lookupLatLong msg, location, sendIntelLink
+  
   # robot.hear /I like pie/i, (msg) ->
   #   msg.emote "makes a freshly baked pie"
   #
