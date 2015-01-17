@@ -90,7 +90,7 @@ module.exports = (robot) ->
         cb(err, msg, coords)
 
   missionMapUrl = (coords) ->
-    return "https://www.google.com/fusiontables/embedviz?q=select+col8+from+1fcYuKkOVrEW-1BbndpfbkFBShjEQHL7e1cT6A1cm&viz=MAP&h=false&lat=" + encodeURIComponent(coords.lat) + "&lng=" + encodeURIComponent(coords.lng) + "&t=1&z=13&l=col8&y=2&tmplt=2&hml=TWO_COL_LAT_LNG"
+    return "https://www.google.com/fusiontables/embedviz?q=select+col8+from+1fcYuKkOVrEW-1BbndpfbkFBShjEQHL7e1cT6A1cm&viz=MAP&h=false&lat=" + encodeURIComponent(coords.lat) + "&lng=" + encodeURIComponent(coords.lng) + "&t=1&z=16&l=col8&y=2&tmplt=2&hml=TWO_COL_LAT_LNG"
 
   sendIntelLink = (err, msg, coords) ->
     return msg.send err if err
