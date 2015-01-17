@@ -93,7 +93,7 @@ module.exports = (robot) ->
   sendIntelLink = (err, msg, coords) ->
     return msg.send err if err
     url = missionMapUrl coords
-    msg.reply "Here you go! " + url
+    msg.reply "<a href='" + url + "'>Here you go!</a>"
 
   robot.respond /(mission)(?: for)?\s(.*)/i, (msg) ->
     location = msg.match[2]
