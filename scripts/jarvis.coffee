@@ -97,7 +97,7 @@ module.exports = (robot) ->
     url = missionMapUrl coords
     msg.reply "Here you go! " + url
 
-  robot.respond /(mission)(?: for)?\s(.*)/i, (msg) ->
+  robot.respond /(mission|missions)(?: for)?\s(.*)/i, (msg) ->
     location = msg.match[2]
     lookupLatLong msg, location, sendIntelLink
   
