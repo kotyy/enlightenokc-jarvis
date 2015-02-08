@@ -51,10 +51,10 @@ module.exports = (robot) ->
   robot.hear /(?:hi|hello|good morning|good afternoon|good evening) jarvis/i, (msg) ->
     msg.reply msg.random salutations
         
-  robot.hear /smurf/i, (msg) ->
-    sendIt = (Math.floor(Math.random() * 10) + 1) == 5 ? true : false;
-    if sendIt
-      msg.send "Smurfs? SMURFS? WE DON'T NEED NO STINKIN SMURFS."
+  # robot.hear /smurf/i, (msg) ->
+  #   sendIt = (Math.floor(Math.random() * 10) + 1) == 5 ? true : false;
+  #   if sendIt
+  #     msg.send "Smurfs? SMURFS? WE DON'T NEED NO STINKIN SMURFS."
   
   # https://www.ingress.com/intel?ll=-77.846809,166.665052&z=17
   robot.hear /https:\/\/www.ingress.com\/intel\?ll=([0-9\-\.]+),([0-9\-\.]+)&z=(\d+)/i, (msg) ->
