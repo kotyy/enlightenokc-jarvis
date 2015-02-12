@@ -101,6 +101,9 @@ module.exports = (robot) ->
     location = msg.match[2]
     lookupLatLong msg, location, sendIntelLink
   
+  robot.hear /blue note smell/i, (msg) ->
+    msg.emote "It's them dirty, filthy hipsters! Smells like cilantro."
+  
   # robot.hear /I like pie/i, (msg) ->
   #   msg.emote "makes a freshly baked pie"
   #
