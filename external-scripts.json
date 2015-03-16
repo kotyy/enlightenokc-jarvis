@@ -6,6 +6,5 @@
   "hubot-ingress",
   "hubot-maps",
   "hubot-redis-brain",
-  "hubot-soon",
   "hubot-youtube"
 ]
